@@ -3,10 +3,16 @@ productName: heart signal
 directories:
   output: dist
   buildResources: buildResources
-
 files:
   - packages/**/dist/**
 
 linux:
   target: deb
-npmRebuild: false
+
+# 添加 Windows 配置
+win:
+  icon: buildResources/icon.ico
+
+# 添加 macOS 配置
+mac:
+  icon: buildResources/icon.icns
