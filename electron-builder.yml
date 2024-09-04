@@ -1,3 +1,5 @@
+appId: com.ysansan.heart-signal
+productName: heart signal
 directories:
   output: dist
   buildResources: buildResources
@@ -7,3 +9,4 @@ files:
 
 linux:
   target: deb
+npmRebuild: false

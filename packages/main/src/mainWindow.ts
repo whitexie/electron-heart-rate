@@ -1,10 +1,18 @@
-import {app, BrowserWindow} from 'electron';
-import {join} from 'node:path';
-import {fileURLToPath} from 'node:url';
+import { app, BrowserWindow } from 'electron';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
+    width: 500,
+    height: 500,
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
+    frame: false,  // 隐藏窗口边框
+    autoHideMenuBar: true,  // 隐藏菜单栏
+    transparent: true,  // 使窗口透明
+    backgroundColor: '#00000000',  // 设置背景为完全透明
+    resizable: false,  // 禁止修改窗口大小
+    icon: join(app.getAppPath(), 'packages/renderer/assets/logo.svg'),
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -12,6 +20,8 @@ async function createWindow() {
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
       preload: join(app.getAppPath(), 'packages/preload/dist/index.mjs'),
     },
+    // 添加以下属性
+    roundedCorners: true,
   });
 
   /**
@@ -53,6 +63,8 @@ async function createWindow() {
     );
   }
 
+  browserWindow.setAlwaysOnTop(true);
+
   return browserWindow;
 }
 
@@ -71,4 +83,15 @@ export async function restoreOrCreateWindow() {
   }
 
   window.focus();
+
+  window.on('blur', () => {
+    window.webContents.send('window-blur-or-focus', false);
+  });
+
+  window.on('focus', () => {
+    window.webContents.send('window-blur-or-focus', true);
+
+  });
+
+  return window;
 }

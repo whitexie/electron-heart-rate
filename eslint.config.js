@@ -16,6 +16,9 @@ export default [
   eslintConfigPrettier,
   {
     files: ['**/*.js', '**/*.mjs', '**/*.ts', '**/*.mts', '**/*.vue'],
+    ignores: [
+      'packages/renderer/asserts/',
+    ],
 
     languageOptions: {
       globals: {

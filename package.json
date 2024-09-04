@@ -1,13 +1,13 @@
 {
-  "name": "vite-electron-builder",
-  "description": "Secure boilerplate for Electron app based on Vite",
-  "version": "2.0.0",
+  "name": "heart-signal",
+  "description": "heart rate monitoring app",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "email": "hippeauxie@gmail.com",
+    "name": "Ysansan",
+    "url": "https://github.com/whitexie"
   },
   "main": "packages/main/dist/index.js",
   "scripts": {
@@ -34,8 +34,10 @@
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.9.1",
     "@types/node": "20.16.3",
+    "@types/web-bluetooth": "^0.0.20",
     "@vitejs/plugin-vue": "5.1.3",
     "@vue/test-utils": "2.4.6",
+    "@vueuse/electron": "^11.0.3",
     "cross-env": "7.0.3",
     "electron": "32.0.1",
     "electron-builder": "24.13.3",
@@ -45,14 +47,16 @@
     "globals": "15.9.0",
     "happy-dom": "15.7.3",
     "nano-staged": "0.8.0",
+    "nanoid": "^5.0.7",
     "playwright": "1.46.1",
     "simple-git-hooks": "2.11.1",
     "typescript": "5.5.4",
     "typescript-eslint": "8.3.0",
+    "unocss": "^0.62.3",
     "unplugin-auto-expose": "0.3.0",
     "vite": "5.4.2",
     "vitest": "2.0.5",
-    "vue": "3.4.38",
+    "vue": "^3.5.0",
     "vue-tsc": "2.1.4"
   },
   "dependencies": {

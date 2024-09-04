@@ -1,8 +1,9 @@
-import {app} from 'electron';
+import { app } from 'electron';
 import './security-restrictions';
-import {restoreOrCreateWindow} from '/@/mainWindow.js';
-import {platform} from 'node:process';
+import { restoreOrCreateWindow } from '/@/mainWindow.js';
+import { platform } from 'node:process';
 import updater from 'electron-updater';
+import { registerBuletoothEvents } from './bluetooth.js';
 
 /**
  * Prevent electron from running multiple instances.
@@ -36,10 +37,15 @@ app.on('activate', restoreOrCreateWindow);
 /**
  * Create the application window when the background process is ready.
  */
-app
+const mainWindow = app
   .whenReady()
-  .then(restoreOrCreateWindow)
-  .catch(e => console.error('Failed create window:', e));
+  .then(restoreOrCreateWindow);
+
+mainWindow.then(win => registerBuletoothEvents(win));
+mainWindow.catch(e => console.error('Failed create window:', e));
+
+
+
 
 /**
  * Install Vue.js or any other extension in development mode only.

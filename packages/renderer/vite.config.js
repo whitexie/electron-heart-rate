@@ -1,7 +1,8 @@
-import {chrome} from '../../.electron-vendors.cache.json';
+import { chrome } from '../../.electron-vendors.cache.json';
 import vue from '@vitejs/plugin-vue';
-import {renderer} from 'unplugin-auto-expose';
-import {join} from 'node:path';
+import { renderer } from 'unplugin-auto-expose';
+import { join } from 'node:path';
+import Unocss from 'unocss/vite';
 
 const PACKAGE_ROOT = __dirname;
 const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
@@ -41,6 +42,7 @@ const config = {
   },
   plugins: [
     vue(),
+    Unocss(),
     renderer.vite({
       preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
     }),
