@@ -5,11 +5,11 @@ import YssIcon from './components/YssIcon.vue';
 import DeivceManage from './components/DeivceManage.vue';
 import DeviceList from './components/DeviceList.vue';
 import PulsatingHeartRateDisplay from './components/PulsatingHeartRateDisplay.vue';
-import type {Device} from './composables/useHeartRateBle';
-import {useHeartRateBle, DeviceStateEnum} from './composables/useHeartRateBle';
-import {useWindowFocusOrBlur} from './composables/useWindowFocusOrBlur';
+import type { Device } from './composables/useHeartRateBle';
+import { useHeartRateBle, DeviceStateEnum } from './composables/useHeartRateBle';
+import { useWindowFocusOrBlur } from './composables/useWindowFocusOrBlur';
 
-const {isFocus} = useWindowFocusOrBlur();
+const { isFocus } = useWindowFocusOrBlur();
 const {
   deviceList,
   heartRateNumber,

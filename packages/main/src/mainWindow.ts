@@ -7,11 +7,11 @@ async function createWindow() {
     width: 500,
     height: 500,
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
-    frame: false,  // 隐藏窗口边框
-    autoHideMenuBar: true,  // 隐藏菜单栏
-    transparent: true,  // 使窗口透明
-    backgroundColor: '#00000000',  // 设置背景为完全透明
-    resizable: false,  // 禁止修改窗口大小
+    frame: false, // 隐藏窗口边框
+    autoHideMenuBar: true, // 隐藏菜单栏
+    transparent: true, // 使窗口透明
+    backgroundColor: '#00000000', // 设置背景为完全透明
+    resizable: false, // 禁止修改窗口大小
     icon: join(app.getAppPath(), 'packages/renderer/assets/logo.svg'),
     webPreferences: {
       nodeIntegration: false,
@@ -90,7 +90,6 @@ export async function restoreOrCreateWindow() {
 
   window.on('focus', () => {
     window.webContents.send('window-blur-or-focus', true);
-
   });
 
   return window;

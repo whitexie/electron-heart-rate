@@ -19,7 +19,6 @@ export function registerBuletoothEvents(win: BrowserWindow) {
       ipcMain.removeListener('selected-device', handleSelectedDevice);
     }
 
-
     if (!timer) {
       _callback = callback;
       // 监听来自渲染进程的选择结果
@@ -29,7 +28,6 @@ export function registerBuletoothEvents(win: BrowserWindow) {
 
   return win;
 }
-
 
 function handleSelectedDevice(event: unknown, deviceId: string) {
   try {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type {Device} from '../composables/useHeartRateBle';
+import type { Device } from '../composables/useHeartRateBle';
 
 defineProps<{
   deviceList: Device[];

@@ -1,6 +1,5 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 export function useMouseInOrOut() {
-
   const isMouseIn = ref(false);
 
   function handleMouseIn() {
@@ -9,9 +8,7 @@ export function useMouseInOrOut() {
 
   function handleMouseOut() {
     isMouseIn.value = false;
-
   }
-
 
   onMounted(() => {
     window.addEventListener('mouseenter', handleMouseIn);

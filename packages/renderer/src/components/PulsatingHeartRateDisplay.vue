@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed} from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
   heartRate: number;
@@ -8,13 +8,11 @@ const props = defineProps<{
 const style = computed(() => {
   let newTime = 1000;
 
-  if(props.heartRate > 129) {
+  if (props.heartRate > 129) {
     newTime = 500;
-  }
-  else if (props.heartRate > 110) {
+  } else if (props.heartRate > 110) {
     newTime = 600;
-  }
-  else if (props.heartRate > 100) {
+  } else if (props.heartRate > 100) {
     newTime = 800;
   }
 
@@ -30,7 +28,7 @@ const style = computed(() => {
       width="200"
       height="100"
       viewBox="0,0,64,34"
-      style="-webkit-app-region: drag;"
+      style="-webkit-app-region: drag"
     >
       <path
         :style="style"

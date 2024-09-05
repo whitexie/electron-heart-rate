@@ -1,23 +1,22 @@
 /// <reference types="web-bluetooth" />
 import { ref, onMounted } from 'vue';
 
-
 const HEART_RATE_SERVICE_UUID = '0000180d-0000-1000-8000-00805f9b34fb';
 
 interface characteristicvaluechangedEvent extends Event {
-  isTrusted: boolean
-  bubbles: boolean
-  cancelBubble: boolean
-  cancelable: boolean
-  composed: boolean
-  currentTarget: BluetoothRemoteGATTCharacteristic
-  defaultPrevented: false
-  eventPhase: number
-  returnValue: boolean
-  srcElement: BluetoothRemoteGATTCharacteristic
-  target: BluetoothRemoteGATTCharacteristic
-  timeStamp: number
-  type: string
+  isTrusted: boolean;
+  bubbles: boolean;
+  cancelBubble: boolean;
+  cancelable: boolean;
+  composed: boolean;
+  currentTarget: BluetoothRemoteGATTCharacteristic;
+  defaultPrevented: false;
+  eventPhase: number;
+  returnValue: boolean;
+  srcElement: BluetoothRemoteGATTCharacteristic;
+  target: BluetoothRemoteGATTCharacteristic;
+  timeStamp: number;
+  type: string;
 }
 
 export const enum DeviceStateEnum {
@@ -30,13 +29,11 @@ export const enum DeviceStateEnum {
   SCANING = 2,
 }
 
-
 export interface Device {
-  deviceId: string
-  deviceName: string
+  deviceId: string;
+  deviceName: string;
 }
 export function useHeartRateBle() {
-
   const deviceList = ref<Device[]>([]);
   const currentDevice = ref<Device | null>(null);
   const currentService = ref<BluetoothRemoteGATTService | null>(null);
@@ -47,7 +44,7 @@ export function useHeartRateBle() {
   const heartRateNumber = ref(0);
 
   function startLiteningDeviceListChanged() {
-    window.electronAPI.onUpdateDevices((_deviceList) => {
+    window.electronAPI.onUpdateDevices(_deviceList => {
       deviceList.value = _deviceList as Device[];
     });
   }
@@ -129,7 +126,6 @@ export function useHeartRateBle() {
     heartRateNumber.value = heartRate;
   }
 
-
   function onDisconnected() {
     console.log('onDisconnected');
     resetAll();
@@ -143,10 +139,12 @@ export function useHeartRateBle() {
     deviceState.value = DeviceStateEnum.NOT_CONNECT;
 
     if (characteristic.value) {
-      characteristic.value.removeEventListener('characteristicvaluechanged', handleHeartRateMeasurement);
+      characteristic.value.removeEventListener(
+        'characteristicvaluechanged',
+        handleHeartRateMeasurement,
+      );
       characteristic.value = null;
     }
-
   }
 
   async function scanHeartRateBleDevices() {
@@ -163,7 +161,6 @@ export function useHeartRateBle() {
     });
     runListeningHeartRateService(device);
   }
-
 
   onMounted(() => {
     startLiteningDeviceListChanged();

@@ -37,15 +37,10 @@ app.on('activate', restoreOrCreateWindow);
 /**
  * Create the application window when the background process is ready.
  */
-const mainWindow = app
-  .whenReady()
-  .then(restoreOrCreateWindow);
+const mainWindow = app.whenReady().then(restoreOrCreateWindow);
 
 mainWindow.then(win => registerBuletoothEvents(win));
 mainWindow.catch(e => console.error('Failed create window:', e));
-
-
-
 
 /**
  * Install Vue.js or any other extension in development mode only.
