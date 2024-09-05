@@ -12,6 +12,22 @@ linux:
 # 添加 Windows 配置
 win:
   icon: buildResources/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  installerIcon: buildResources/icon.ico
+  uninstallerIcon: buildResources/icon.ico
+  installerHeaderIcon: buildResources/icon.ico
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: ${productName}
 
 # 添加 macOS 配置
 mac:
