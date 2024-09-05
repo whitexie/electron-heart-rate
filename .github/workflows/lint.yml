@@ -65,5 +65,4 @@ jobs:
         with:
           cache: 'pnpm'
 
-      - run: pnpm i prettier
-      - run: pnpm run prettier --check "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue}"
+      - run: pnpm dlx prettier --check "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue}"
