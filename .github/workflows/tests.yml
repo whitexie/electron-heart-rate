@@ -27,14 +27,14 @@ jobs:
       - run: pnpm install
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: pnpm run test:main --if-present
-      - run: pnpm run test:preload --if-present
-      - run: pnpm run test:renderer --if-present
+      - run: pnpm run test:main
+      - run: pnpm run test:preload
+      - run: pnpm run test:renderer
 
       # I ran into problems trying to run an electron window in ubuntu due to a missing graphics server.
       # That's why this special command for Ubuntu is here
       - run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- npm run test:e2e --if-present
         if: matrix.os == 'ubuntu-latest'
 
-      - run: pnpm run test:e2e --if-present
+      - run: pnpm run test:e2e
         if: matrix.os != 'ubuntu-latest'
