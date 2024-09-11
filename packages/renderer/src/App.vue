@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 /// <reference types="web-bluetooth" />
 
-import YssIcon from './components/YssIcon.vue';
 import DeivceManage from './components/DeivceManage.vue';
 import DeviceList from './components/DeviceList.vue';
 import PulsatingHeartRateDisplay from './components/PulsatingHeartRateDisplay.vue';
@@ -33,45 +32,25 @@ function onSelectDevice(item: Device) {
     <PulsatingHeartRateDisplay :heart-rate="heartRateNumber" />
 
     <template v-if="isFocus">
-      <DeivceManage class="p-1 bg-gray-100 rounded-lg shadow-md">
-        <div class="flex px-1 justify-between w-full items-center relative">
-          <div class="text-16px font-semibold flex items-center">
-            当前设备：{{ currentDevice?.deviceName || '未连接' }}
+      <DeivceManage
+        :device-list="deviceList"
+        :current-device="currentDevice"
+        :device-state="deviceState"
+        class="p-1 bg-gray-100 rounded-lg shadow-md"
+        @click-scan="connectBluetooth"
+        @selected-device="onSelectDevice"
+      >
+        <transition name="slide-up">
+          <div
+            v-show="deviceState === DeviceStateEnum.SCANING && deviceList.length"
+            class="panel-content absolute left-0 top-0 rounded max-h-80"
+          >
+            <DeviceList
+              :device-list="deviceList"
+              @click="onSelectDevice"
+            />
           </div>
-
-          <div class="flex items-center">
-            <button
-              v-if="deviceState === DeviceStateEnum.NOT_CONNECT"
-              class="flex items-center px-3 py-1.5 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors my-1"
-              @click="connectBluetooth"
-            >
-              <YssIcon
-                :size="16"
-                icon="icon-duanbochelanya"
-                class="mr-1.5"
-              />
-              连接
-            </button>
-            <template v-if="deviceState === DeviceStateEnum.SCANING">
-              <YssIcon
-                :size="24"
-                icon="icon-loading"
-                class="loading text-blue-500"
-              />
-            </template>
-          </div>
-          <transition name="slide-up">
-            <div
-              v-show="deviceState === DeviceStateEnum.SCANING && deviceList.length"
-              class="panel-content absolute left-0 top-0 rounded max-h-80"
-            >
-              <DeviceList
-                :device-list="deviceList"
-                @click="onSelectDevice"
-              />
-            </div>
-          </transition>
-        </div>
+        </transition>
       </DeivceManage>
     </template>
   </div>
@@ -86,28 +65,6 @@ function onSelectDevice(item: Device) {
   -webkit-app-region: drag;
   height: 10px;
   background-color: white;
-}
-
-.divce-list {
-  transform: translateY(60px);
-}
-
-.yss-button {
-  padding: 4px 10px;
-  border-radius: 5px;
-  border: 0px;
-  cursor: pointer;
-}
-
-.device-item {
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: buttonface;
-  cursor: pointer;
-}
-
-.device-item:not(:first-child) {
-  margin-top: 10px;
 }
 
 @keyframes loading {

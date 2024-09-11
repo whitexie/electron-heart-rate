@@ -46,6 +46,7 @@ const style = computed(() => {
         x="28"
         y="23"
         font-size="8"
+        font-weight="bold"
         fill="#E83825"
       >
         {{ heartRate }} BPM

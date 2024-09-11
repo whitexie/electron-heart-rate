@@ -42,4 +42,15 @@ const onSelectDevice = (device: Device) => {
 .device-item:not(:first-child) {
   margin-top: 10px;
 }
+
+.device-item {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: buttonface;
+  cursor: pointer;
+}
+
+.device-item:not(:first-child) {
+  margin-top: 10px;
+}
 </style>
